@@ -1,0 +1,80 @@
+.base {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px;
+    min-width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form label {
+    font-size: 14px;
+    font-family: "DM Sans Bold", sans-serif;
+    letter-spacing: 2px;
+}
+
+.form input {
+    font-size: 16px;
+    font-family: "DM Sans", sans-serif;
+    padding: 2px 5px;
+}
+
+.username {
+    position: relative;
+}
+
+.pw1, .pw2 {
+    position: relative;
+}
+
+.errorMsg {
+    position: absolute;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    bottom: -20px;
+    color: red;
+}
+
+.submitBtn {
+    position: relative;
+    margin-top: 15px;
+}
+
+.submitBtn button {
+    border: none;
+    font-size: 16px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 5px 5px;
+    background-color: rgb(50, 164, 255);
+    color: white;
+}
+
+.submitBtn button:hover {
+    background-color: rgb(20, 134, 225);
+}
+
+.submitBtn button:disabled {
+    background-color: rgba(50, 164, 255, 0.6);
+}
+
+.successMsg {
+    color: white;
+    font-family: "DM Sans Bold", sans-serif;
+    font-size: 18px;
+}

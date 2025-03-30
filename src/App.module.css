@@ -1,0 +1,74 @@
+.app {
+    padding: 10px 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    border-bottom: 2px solid white;
+}
+
+.logo {
+    text-decoration: none;
+    font-family: "DM Sans BoldItalic", sans-serif;
+    color: white;
+    font-size: 35px;
+}
+
+.navbtnContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 20px;
+}
+
+.navbtnContainer * {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbtnContainer a {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.navbtnContainer a:hover{
+    background-color: white;
+    color: dodgerblue;
+}
+
+.navbtnContainer button {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: rgb(50, 164, 255);
+    font-family: "DM Sans Bold", sans-serif;
+}
+
+.navbtnContainer button:hover{
+    background-color: white;
+    color: dodgerblue;
+}
+
+.navbtnContainer p {
+    font-size: 20px;
+}
+
+.footer {
+    font-family: "DM Sans Bold", sans-serif;
+    color: white;
+    text-align: center;
+    margin-top: auto;
+    border-top: 2px solid white;
+}
