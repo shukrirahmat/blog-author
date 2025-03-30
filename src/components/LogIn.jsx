@@ -48,6 +48,7 @@ const LogIn = () => {
         body: new URLSearchParams({
           username,
           password,
+          authorCheck: true
         }),
       })
         .then((res) => {
