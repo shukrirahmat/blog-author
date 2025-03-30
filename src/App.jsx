@@ -54,7 +54,7 @@ function App() {
     <div className={styles.app}>
       <nav className={styles.navbar}>
         <Link to="/" className={styles.logo}>
-          <h1>THE BLOG</h1>
+          <h1>THE BLOG <span>(Author lounge)</span></h1>
         </Link>
         <div className={styles.navbtnContainer}>
           {userLoggedIn && !isLoading && <p>Hello, {userName}</p>}

@@ -56,7 +56,7 @@
 
 .post:hover{
     cursor: pointer;
-    background-color:lightblue;
+    background-color:lightgray;
 }
 
 .postTitle {

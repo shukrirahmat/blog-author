@@ -61,16 +61,16 @@
     font-size: 16px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 5px 5px;
-    background-color: rgb(50, 164, 255);
+    background-color: slategray;
     color: white;
 }
 
 .submitBtn button:hover {
-    background-color: rgb(20, 134, 225);
+    background-color: darkslategray;
 }
 
 .submitBtn button:disabled {
-    background-color: rgba(50, 164, 255, 0.6);
+    background-color: rgba(112, 128, 144, 0.6);
 }
 
 .successMsg {
