@@ -48,7 +48,6 @@ const Home = () => {
         <div className={styles.leftbox}>
           <ul className={styles.postsContainer}>
             {posts.map((post) => {
-              if (post.published) {
                 return (
                   <Link to={`/posts/${post.id}`} key={post.id}>
                     <li className={styles.post}>
@@ -64,19 +63,16 @@ const Home = () => {
                     </li>
                   </Link>
                 );
-              }
             })}
           </ul>
         </div>
         <div className={styles.rightbox}>
           {posts.map((post) => {
-            if (post.published) {
               return (
                 <Link to={`/posts/${post.id}`} key={post.id}>
                   {post.title}
                 </Link>
               );
-            }
           })}
         </div>
       </div>
