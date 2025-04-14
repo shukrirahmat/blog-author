@@ -1,0 +1,128 @@
+.base {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    gap:20px;
+}
+
+.post {
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.postTitle {
+    font-family: "DM Sans Bold", sans-serif;
+    font-size: 24px;
+}
+
+.postTitle span {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+}
+
+.base hr {
+    border-top: 1px solid black;
+    margin-top: -2px;
+}
+
+.comments {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 50px;
+}
+
+.comment {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.writer {
+    font-family: "DM Sans Bold", sans-serif;
+    font-size: 18px;
+}
+
+.writer span {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+}
+
+.commentText {
+    font-family: "DM Sans", sans-serif;
+}
+
+.logInMessage p {
+    color: white;
+    font-family: "DM Sans Bold", sans-serif;
+    text-align: center;
+}
+
+.logInMessage a {
+    color: lightblue;
+}
+
+.newMessage {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+}
+
+.newMessage form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newMessage form textarea {
+    padding: 10px;
+    width: 100%;
+    height: 80px;
+    border-radius: 5px;
+    border: solid 2px gray;
+    font-family: "DM Sans", sans-serif;
+    resize: none;
+}
+
+.newMessage form textarea:focus {
+    outline: none;
+    border: solid 2px dodgerblue;
+}
+
+.newMessage form button {
+    border: none;
+    font-size: 16px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 5px 5px;
+    background-color: slategray;
+    color: white;
+}
+
+.newMessage form button:hover {
+    background-color: darkslategray;
+}
+
+.newMessage form button:disabled {
+    background-color: rgba(112, 128, 144, 0.6);
+}
+
+.commentError p {
+    color: white;
+    font-family: "DM Sans Bold", sans-serif;
+    text-align: center;
+}
+
+.message {
+    color: white;
+    font-size: 20px;
+    font-family: "DM Sans", sans-serif;
+}

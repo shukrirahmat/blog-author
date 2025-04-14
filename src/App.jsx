@@ -60,6 +60,7 @@ function App() {
           {userLoggedIn && !isLoading && <p>Hello, {userName}</p>}
           {!userLoggedIn && !isLoading && <Link to="/log-in">LOG IN</Link>}
           {!userLoggedIn && !isLoading && <Link to="/sign-up">SIGN UP</Link>}
+          {userLoggedIn && !isLoading && <Link to="/myposts">MY POSTS</Link>}
           {userLoggedIn && !isLoading && (
             <button onClick={handleLogOut}>LOG OUT</button>
           )}

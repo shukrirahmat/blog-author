@@ -1,0 +1,85 @@
+.home {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.leftbox {
+    flex: 3
+}
+
+.rightbox {
+    flex: 1;
+    border-left: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+    gap: 20px;
+}
+
+.rightbox a {
+    color: white;
+    font-family: "DM Sans Bold", sans-serif;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.home hr {
+    border-top: 1px solid black;
+    margin-top: -2px;
+}
+
+.postsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    list-style-type: none;
+}
+
+.postsContainer a {
+    text-decoration: none;
+    color: black;
+}
+
+.post {
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "DM Sans", sans-serif;
+    max-height: 15em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.post:hover{
+    cursor: pointer;
+    background-color:lightgray;
+}
+
+.postTitle {
+    font-family: "DM Sans Bold", sans-serif;
+    font-size: 24px;
+}
+
+.postTitle span {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+}
+
+.content {
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+}
+
+.message {
+    color: white;
+    font-size: 20px;
+    font-family: "DM Sans", sans-serif;
+}
+
+.message span {
+    font-size: 14px;
+}
