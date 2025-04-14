@@ -67,7 +67,7 @@ const UserPosts = () => {
                     <li className={styles.post}>
                       <div className={styles.postTitle}>
                         {post.title}{" "}
-                        <span>
+                        <span className={styles.publishedTag}>
                           published on{" "}
                           {format(post.datePosted, "Pp")}
                         </span>
@@ -83,7 +83,7 @@ const UserPosts = () => {
                     <li className={styles.post}>
                       <div className={styles.postTitle}>
                         {post.title}{" "}
-                        <span>
+                        <span className={styles.unpublishedTag}>
                           not published
                         </span>
                       </div>

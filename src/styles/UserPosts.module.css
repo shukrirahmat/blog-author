@@ -6,7 +6,15 @@
 }
 
 .leftbox {
-    flex: 3
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.leftbox > h1 {
+    font-family: "DM Sans Bold", sans-serif;
+    color: white;
 }
 
 .rightbox {
@@ -65,7 +73,7 @@
 }
 
 .postTitle span {
-    font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans Bold", sans-serif;
     font-size: 14px;
 }
 
@@ -82,4 +90,20 @@
 
 .message span {
     font-size: 14px;
+}
+
+.publishedTag {
+    background-color: green;
+    color: white;
+    border-radius: 2px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 2px 5px;
+}
+
+.unpublishedTag {
+    background-color: darkgrey;
+    color: white;
+    border-radius: 2px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 2px 5px;
 }
