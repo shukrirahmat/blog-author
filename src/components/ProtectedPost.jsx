@@ -17,10 +17,49 @@ const ProtectedPost = () => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
   const [isAddingComment, setIsAddingComment] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   const { postId } = useParams();
   const userLoggedIn = useOutletContext();
   const navigate = useNavigate();
+
+  const handlePublish = (publishStatus) => {
+    setError(null);
+    const boolValue = publishStatus? "1" : "0";
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/log-in");
+      navigate(0);
+    } else {
+      setIsPublishing(true);
+      fetch(fetchURL + "/posts/" + postId + "/publish/" + boolValue, {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else if (response.status === 401) throw new Error("Unverified");
+          else throw new Error("Server Error");
+        })
+        .then((data) => {
+          setPost(data);
+          setIsPublishing(false);
+        })
+        .catch((err) => {
+          if (err.message === "Unverified") {
+            navigate("/log-in");
+            navigate(0);
+          } else {
+            setError(err.message);
+          }
+          setIsPublishing(false);
+        });
+    }
+  };
 
   const handleComment = (e) => {
     setCommentText(e.target.value);
@@ -119,12 +158,37 @@ const ProtectedPost = () => {
         <div className={styles.post}>
           <div className={styles.postTitle}>
             {post.title}{" "}
-            <span>
-              by <b>{post.authorUsername}</b> on {format(post.datePosted, "Pp")}
-            </span>
+            {post.published ? (
+              <span className={styles.publishedTag}>
+                published on {format(post.datePosted, "Pp")}
+              </span>
+            ) : (
+              <span className={styles.unpublishedTag}>not published</span>
+            )}
           </div>
           <hr></hr>
           <p className={styles.content}>{post.content}</p>
+          {!isPublishing && post.published && (
+            <button className={styles.publishBtn} onClick={() => {handlePublish(false)}}>
+              UNPUBLISH
+            </button>
+          )}
+          {!isPublishing && !post.published && (
+            <button className={styles.publishBtn} onClick={() => {handlePublish(true)}}>
+              PUBLISH
+            </button>
+          )}
+          {isPublishing && post.published && (
+            <button className={styles.publishBtn} disabled>
+              UNPUBLISHING...
+            </button>
+          )}
+          {isPublishing && !post.published && (
+            <button className={styles.publishBtn} disabled>
+              PUBLISHING...
+            </button>
+          )}
+
         </div>
 
         <ul className={styles.comments}>
@@ -147,7 +211,7 @@ const ProtectedPost = () => {
               </p>
             </li>
           )}
-          {userLoggedIn === true && (
+          {userLoggedIn === true && post.published && (
             <li className={styles.newMessage}>
               <form onSubmit={submitComment}>
                 <textarea

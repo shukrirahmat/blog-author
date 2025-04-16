@@ -70,6 +70,10 @@
 .postTitle {
     font-family: "DM Sans Bold", sans-serif;
     font-size: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .postTitle span {

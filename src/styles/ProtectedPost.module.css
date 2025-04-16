@@ -18,10 +18,14 @@
 .postTitle {
     font-family: "DM Sans Bold", sans-serif;
     font-size: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .postTitle span {
-    font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans Bold", sans-serif;
     font-size: 14px;
 }
 
@@ -125,4 +129,39 @@
     color: white;
     font-size: 20px;
     font-family: "DM Sans", sans-serif;
+}
+
+.publishedTag {
+    background-color: green;
+    color: white;
+    border-radius: 2px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 2px 5px;
+}
+
+.unpublishedTag {
+    background-color: darkgrey;
+    color: white;
+    border-radius: 2px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 2px 5px;
+}
+
+.publishBtn {
+    align-self: flex-end;
+    margin-top: 20px;
+    border: none;
+    font-size: 16px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 5px 15px;
+    background-color: slategray;
+    color: white;
+}
+
+.publishBtn:hover {
+    background-color: darkslategray;
+}
+
+.publishBtn:disabled {
+    background-color: rgba(112, 128, 144, 0.6);
 }
