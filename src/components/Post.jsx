@@ -122,7 +122,7 @@ const Post = () => {
             return (
               <li key={comment.id} className={styles.comment}>
                 <p className={styles.writer}>
-                  {comment.writerUsername} <span>commented on {format(post.datePosted, "Pp")}:</span>
+                  {comment.writerUsername} <span>commented on {format(comment.dateWritten, "Pp")}:</span>
                 </p>
                 <hr></hr>
                 <p className={styles.commentText}>{comment.content}</p>
