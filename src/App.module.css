@@ -63,6 +63,7 @@
 .navbtnContainer button:hover{
     background-color: white;
     color: darkslategray;
+    cursor: pointer;
 }
 
 .navbtnContainer p {
