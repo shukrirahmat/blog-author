@@ -23,6 +23,21 @@
     src: url(assets/fonts/PlayfairDisplay-BoldItalic.ttf);
 }
 
+@font-face {
+  font-family: "Lora Bold";
+  src: url(assets/fonts/Lora-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Lora BoldItalic";
+  src: url(assets/fonts/Lora-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: "DM Serif Text";
+  src: url(assets/fonts/DMSerifText-Regular.ttf);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
