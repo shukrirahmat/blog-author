@@ -10,11 +10,74 @@ const NewPost = () => {
   const [title, setTitle] = useState("");
   const [titleErr, setTitleErr] = useState("");
   const [content, setContent] = useState("");
+  const [isCheck, setIsCheck] = useState(true);
   const [isPosting, setIsPosting] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = () => {};
-  const editTitle = () => {};
-  const editContent = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setTitleErr("");
+    setError(null);
+    const token = window.localStorage.getItem("token");
+
+    if (title.length < 1) {
+      setTitleErr("Title is required");
+    } else if (!token) {
+      navigate("/log-in");
+      navigate(0);
+    } else {
+      setIsPosting(true);
+      fetch(fetchURL + "/posts", {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${token}`,
+        },
+        body: new URLSearchParams({
+          title,
+          content,
+          published: isCheck ? true: ""
+        }),
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else if (response.status === 401) throw new Error("Unverified");
+          else throw new Error("Unable to add new post. Server Error");
+        })
+        .then((data) => {
+          navigate("/myposts");
+        })
+        .catch((err) => {
+          if (err.message === "Unverified") {
+            navigate("/log-in");
+            navigate(0);
+          } else {
+            setError(err.message);
+            setTitle("");
+            setTitleErr("");
+            setContent("");
+            setIsCheck(true);
+          }
+          setIsPosting(false);
+        });
+    }
+  };
+
+  const editTitle = (e) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    setTitleErr("");
+  };
+
+  const editContent = (e) => {
+    const newContent = e.target.value;
+    setContent(newContent);
+  };
+
+  const toggleCheck = (e) => {
+    setIsCheck(e.target.checked);
+  };
 
   if (!userLoggedIn) {
     navigate("/log-in");
@@ -42,10 +105,24 @@ const NewPost = () => {
             value={content}
           ></textarea>
         </div>
-        <div className={styles.submitBtn}>
-          {!isPosting && <button>POST</button>}
-          {isPosting && <button disabled>POSTING...</button>}
+        <div className={styles.bottom}>
+          <div className={styles.publishCheck}>
+            <input
+              type="checkbox"
+              id="publish"
+              name="publish"
+              value="published"
+              onChange={toggleCheck}
+              checked={isCheck}
+            />
+            <label htmlFor="publish">Publish post?</label>
+          </div>
+          <div className={styles.submitBtn}>
+            {!isPosting && <button>POST</button>}
+            {isPosting && <button disabled>POSTING...</button>}
+          </div>
         </div>
+        {error && <p className={styles.postingError}>{error}</p>}
       </form>
     </div>
   );

@@ -1,0 +1,99 @@
+.base {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.form {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 50px;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: stretch;
+  position: relative;
+}
+
+.postingError {
+  position: absolute;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: red;
+}
+
+.titleBox {
+  position: relative;
+}
+
+.titleBox input {
+  width: 100%;
+  font-size: 18px;
+  font-family: "DM Sans", sans-serif;
+  padding: 2px 5px;
+}
+
+.errorMsg {
+  position: absolute;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  bottom: -18px;
+  color: red;
+  left: 20px;
+}
+
+.content {
+  flex: 1;
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+}
+
+.content textarea {
+  flex: 1;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  font-family: "DM Sans", sans-serif;
+  resize: none;
+  font-size: 14px;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-self: flex-end;
+  align-items: center;
+}
+
+.publishCheck {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.submitBtn button {
+  border: none;
+  font-size: 16px;
+  font-family: "DM Sans Bold", sans-serif;
+  padding: 5px 20px;
+  background-color: slategray;
+  color: white;
+}
+
+.submitBtn button:hover {
+  background-color: darkslategray;
+}
+
+.submitBtn button:disabled {
+  background-color: rgba(112, 128, 144, 0.6);
+}
