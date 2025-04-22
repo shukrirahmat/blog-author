@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useOutletContext} from "react-router-dom";
+import { useNavigate, Navigate, useOutletContext} from "react-router-dom";
 import fetchURL from "../fetchURL";
 import styles from "../styles/LogIn.module.css";
 
@@ -78,8 +78,12 @@ const LogIn = () => {
     }
   };
 
+  if (userLoggedIn === null) {
+    return <div></div>
+  }
+
   if (userLoggedIn) {
-    navigate("/")
+    return <Navigate to="/"/>
   }
 
   return (
