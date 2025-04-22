@@ -1,0 +1,15 @@
+.base {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.base h2 {
+    color: white;
+    font-family: "DM Sans Bold", sans-serif;   
+}
+
+.base a {
+    color: white;
+}
