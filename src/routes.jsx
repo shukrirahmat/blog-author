@@ -6,6 +6,7 @@ import Post from './components/Post.jsx';
 import SignUp from './components/SignUp.jsx';
 import UserPosts from './components/UserPosts.jsx';
 import ProtectedPost from './components/ProtectedPost.jsx';
+import NewPost from './components/NewPost.jsx';
 
 const routes = [
   {
@@ -18,7 +19,8 @@ const routes = [
       { path: "sign-up", element: <SignUp /> },
       { path: "myposts", element: <UserPosts/>},
       { path: "posts/:postId", element: <Post/>},
-      { path: "myposts/:postId", element: <ProtectedPost/>}
+      { path: "myposts/new", element: <NewPost/>},
+      { path: "myposts/:postId", element: <ProtectedPost/>},
     ],
   },
 ];
