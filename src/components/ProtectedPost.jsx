@@ -31,6 +31,7 @@ const ProtectedPost = () => {
     if (!token) {
       navigate("/log-in");
       navigate(0);
+      
     } else {
       setIsPublishing(true);
       fetch(fetchURL + "/posts/" + postId + "/publish/" + boolValue, {
@@ -53,6 +54,7 @@ const ProtectedPost = () => {
           if (err.message === "Unverified") {
             navigate("/log-in");
             navigate(0);
+            
           } else {
             setError(err.message);
           }
@@ -74,6 +76,7 @@ const ProtectedPost = () => {
       if (!token) {
         navigate("/log-in");
         navigate(0);
+        
       } else {
         setIsAddingComment(true);
         fetch(fetchURL + "/posts/" + postId + "/comments", {
@@ -103,6 +106,7 @@ const ProtectedPost = () => {
             if (err.message === "Unverified") {
               navigate("/log-in");
               navigate(0);
+              
             } else {
               setCommentError(err.message);
               setCommentText("");
@@ -122,6 +126,7 @@ const ProtectedPost = () => {
     if (!token) {
       navigate("/log-in");
       navigate(0);
+      
     } else {
       fetch(fetchURL + "/posts/userPosts/" + postId, {
         mode: "cors",
@@ -174,9 +179,9 @@ const ProtectedPost = () => {
           </div>
           <hr></hr>
           <p className={styles.content}>{post.content}</p>
+          <div className={styles.actionBtnContainer}>
           {!isPublishing && post.published && (
             <button
-              className={styles.publishBtn}
               onClick={() => {
                 handlePublish(false);
               }}
@@ -186,7 +191,6 @@ const ProtectedPost = () => {
           )}
           {!isPublishing && !post.published && (
             <button
-              className={styles.publishBtn}
               onClick={() => {
                 handlePublish(true);
               }}
@@ -195,15 +199,19 @@ const ProtectedPost = () => {
             </button>
           )}
           {isPublishing && post.published && (
-            <button className={styles.publishBtn} disabled>
+            <button disabled>
               UNPUBLISHING...
             </button>
           )}
           {isPublishing && !post.published && (
-            <button className={styles.publishBtn} disabled>
+            <button disabled>
               PUBLISHING...
             </button>
           )}
+          <button>
+            DELETE
+          </button>
+          </div>
         </div>
 
         <ul className={styles.comments}>
@@ -246,6 +254,9 @@ const ProtectedPost = () => {
             </li>
           )}
         </ul>
+      <div className={styles.deleteConfirmation}>
+          <p>Delete this Post?</p>
+      </div>
       </div>
     );
   }

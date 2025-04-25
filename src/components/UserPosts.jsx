@@ -18,8 +18,8 @@ const UserPosts = () => {
     const token = window.localStorage.getItem("token");
 
     if (!token) {
-      navigate("/log-in");
-      navigate(0);
+      navigate("/log-in");   
+      navigate(0); 
     } else {
       fetch(fetchURL + "/posts/userPosts", {
         mode: "cors",

@@ -32,9 +32,10 @@ const Post = () => {
     if (commentText.length > 0) {
       const token = window.localStorage.getItem("token");
 
-      if (!token) {
+      if (!token) {        
         navigate("/log-in");
         navigate(0);
+        
       } else {
         setIsAddingComment(true);
         fetch(fetchURL + "/posts/" + postId + "/comments", {
@@ -61,9 +62,10 @@ const Post = () => {
             setCommentText("");
           })
           .catch((err) => {
-            if (err.message === "Unverified") {
+            if (err.message === "Unverified") {             
               navigate("/log-in");
               navigate(0);
+              
             } else {
               setCommentError(err.message);
               setCommentText("");

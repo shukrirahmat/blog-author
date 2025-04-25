@@ -69,6 +69,7 @@ const LogIn = () => {
             window.localStorage.setItem("token", data.token);
             navigate("/");
             navigate(0);
+            
           }
         })
         .catch((err) => {

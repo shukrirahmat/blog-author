@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, Navigate, useOutletContext } from "react-router-dom";
 import fetchURL from "../fetchURL";
 import styles from "../styles/NewPost.module.css";
 
@@ -37,7 +37,7 @@ const NewPost = () => {
         body: new URLSearchParams({
           title,
           content,
-          published: isCheck ? true: ""
+          published: isCheck ? true : "",
         }),
       })
         .then((response) => {
@@ -79,9 +79,12 @@ const NewPost = () => {
     setIsCheck(e.target.checked);
   };
 
+  if (userLoggedIn === null) {
+    return <div></div>
+  }
+
   if (!userLoggedIn) {
-    navigate("/log-in");
-    navigate(0);
+    return <Navigate to="/log-in"/>
   }
 
   return (

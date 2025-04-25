@@ -153,17 +153,6 @@
     padding: 2px 5px;
 }
 
-.publishBtn {
-    align-self: flex-end;
-    margin-top: 20px;
-    border: none;
-    font-size: 16px;
-    font-family: "DM Sans Bold", sans-serif;
-    padding: 5px 15px;
-    background-color: slategray;
-    color: white;
-}
-
 .tick {
     background-color: greenyellow;
     border-radius: 4px;
@@ -178,10 +167,27 @@ svg {
     filter: invert(1);
 }
 
-.publishBtn:hover {
+.actionBtnContainer {
+    align-self: flex-end;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.actionBtnContainer button {
+    border: none;
+    font-size: 16px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 5px 15px;
+    background-color: slategray;
+    color: white;
+}
+
+.actionBtnContainer button:hover {
     background-color: darkslategray;
 }
 
-.publishBtn:disabled {
+.actionBtnContainer button:disabled {
     background-color: rgba(112, 128, 144, 0.6);
 }
