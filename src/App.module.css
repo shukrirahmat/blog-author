@@ -12,13 +12,13 @@
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid salmon;
 }
 
 .logo {
     text-decoration: none;
     font-family: "DM Serif Text", serif;
-    color: white;
+    color: salmon;
     font-size: 35px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .navbtnContainer * {
-    color: white;
+    color: salmon;
     text-decoration: none;
     font-size: 18px;
 }
@@ -44,25 +44,25 @@
 .navbtnContainer a {
     padding: 5px 15px;
     border-radius: 5px;
-    border: 1px solid white;
+    border: 1px solid salmon;
 }
 
 .navbtnContainer a:hover{
-    background-color: white;
-    color: darkslategray;
+    background-color: salmon;
+    color: white;
 }
 
 .navbtnContainer button {
     padding: 5px 15px;
     border-radius: 5px;
-    border: 1px solid white;
-    background-color: slategray;
+    border: 1px solid salmon;
+    background-color: inherit;
     font-family: "DM Sans Bold", sans-serif;
 }
 
 .navbtnContainer button:hover{
-    background-color: white;
-    color: darkslategray;
+    background-color: salmon;
+    color: white;
     cursor: pointer;
 }
 
@@ -72,8 +72,8 @@
 
 .footer {
     font-family: "DM Sans Bold", sans-serif;
-    color: white;
+    color: salmon;
     text-align: center;
     margin-top: auto;
-    border-top: 2px solid white;
+    border-top: 2px solid salmon;
 }

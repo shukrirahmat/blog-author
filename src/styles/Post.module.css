@@ -62,13 +62,13 @@
 }
 
 .logInMessage p {
-    color: white;
+    color: salmon;
     font-family: "DM Sans Bold", sans-serif;
     text-align: center;
 }
 
 .logInMessage a {
-    color: lightblue;
+    color: salmon;
 }
 
 .newMessage {
@@ -95,7 +95,7 @@
 
 .newMessage form textarea:focus {
     outline: none;
-    border: solid 2px dodgerblue;
+    border: solid 2px salmon;
 }
 
 .newMessage form button {
@@ -103,16 +103,16 @@
     font-size: 16px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 5px 5px;
-    background-color: slategray;
+    background-color: salmon;
     color: white;
 }
 
 .newMessage form button:hover {
-    background-color: darkslategray;
+    background-color: rgb(220, 98, 84);
 }
 
 .newMessage form button:disabled {
-    background-color: rgba(112, 128, 144, 0.6);
+    background-color: rgba(250, 128, 114, 0.6);
 }
 
 .commentError p {
@@ -148,12 +148,12 @@ svg {
     font-size: 12px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 2px 5px;
-    background-color: slategray;
+    background-color: salmon;
     color: white;
 }
 
 .commentHeader button:hover {
-    background-color: darkslategray;
+    background-color: rgb(220, 98, 84)
 }
 
 .deleteOn {
@@ -193,16 +193,16 @@ svg {
     font-size: 16px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 5px 15px;
-    background-color: slategray;
+    background-color: salmon;
     color: white;
 }
 
 .yesno button:hover {
-    background-color: darkslategray;
+    background-color: rgb(220, 98, 84);
 }
 
 .yesno button:disabled {
-    background-color: rgba(112, 128, 144, 0.6);
+    background-color: rgba(250, 128, 114, 0.6);
 }
 
 .deleteOff {

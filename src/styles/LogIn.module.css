@@ -56,14 +56,14 @@
     font-size: 16px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 5px 5px;
-    background-color: slategray;
+    background-color: salmon;
     color: white;
 }
 
 .submitBtn button:hover {
-    background-color: darkslategray;
+    background-color: rgb(220, 98, 84);
 }
 
 .submitBtn button:disabled {
-    background-color: rgba(112, 128, 144, 0.6);
+    background-color: rgba(250, 128, 114, 0.6);
 }

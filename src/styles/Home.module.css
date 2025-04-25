@@ -11,7 +11,7 @@
 
 .rightbox {
     flex: 1;
-    border-left: 2px solid white;
+    border-left: 2px solid salmon;
     display: flex;
     flex-direction: column;
     padding: 10px 30px;
@@ -19,7 +19,7 @@
 }
 
 .rightbox a {
-    color: white;
+    color: salmon;
     font-family: "DM Sans Bold", sans-serif;
     white-space: nowrap;
     overflow-x: hidden;
@@ -56,7 +56,7 @@
 
 .post:hover{
     cursor: pointer;
-    background-color:lightgray;
+    background-color:rgba(250, 128, 114, 0.5);
 }
 
 .postTitle {
@@ -75,7 +75,7 @@
 }
 
 .message {
-    color: white;
+    color: salmon;
     font-size: 20px;
     font-family: "DM Sans", sans-serif;
 }

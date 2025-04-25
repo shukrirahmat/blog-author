@@ -54,12 +54,11 @@ function App() {
     <div className={styles.app}>
       <nav className={styles.navbar}>
         <Link to="/" className={styles.logo}>
-          <h1>THE BLOG <span>(Author lounge)</span></h1>
+          <h1>THE BLOG <span>(Author ver.)</span></h1>
         </Link>
         <div className={styles.navbtnContainer}>
           {userLoggedIn && !isLoading && <p>Hello, {userName}</p>}
           {!userLoggedIn && !isLoading && <Link to="/log-in">LOG IN</Link>}
-          {!userLoggedIn && !isLoading && <Link to="/sign-up">SIGN UP</Link>}
           {userLoggedIn && !isLoading && <Link to="/myposts/new">NEW POST</Link>}
           {userLoggedIn && !isLoading && <Link to="/myposts">MY POSTS</Link>}
           {userLoggedIn && !isLoading && (

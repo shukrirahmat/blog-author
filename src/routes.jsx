@@ -3,7 +3,6 @@ import ErrorPage from './components/ErrorPage.jsx';
 import Home from './components/Home.jsx';
 import LogIn from './components/LogIn.jsx';
 import Post from './components/Post.jsx';
-import SignUp from './components/SignUp.jsx';
 import UserPosts from './components/UserPosts.jsx';
 import ProtectedPost from './components/ProtectedPost.jsx';
 import NewPost from './components/NewPost.jsx';
@@ -16,7 +15,6 @@ const routes = [
     children: [
       { index: true, element: <Home/> },
       { path: "log-in", element: <LogIn /> },
-      { path: "sign-up", element: <SignUp /> },
       { path: "myposts", element: <UserPosts/>},
       { path: "posts/:postId", element: <Post/>},
       { path: "myposts/new", element: <NewPost/>},

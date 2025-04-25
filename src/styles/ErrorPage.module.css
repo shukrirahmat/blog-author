@@ -6,10 +6,11 @@
 }
 
 .base h2 {
-    color: white;
+    color: salmon;
     font-family: "DM Sans Bold", sans-serif;   
 }
 
 .base a {
-    color: white;
+    color: salmon;
+    font-family: "DM Sans", sans-serif; 
 }
