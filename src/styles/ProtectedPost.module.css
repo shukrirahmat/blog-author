@@ -260,3 +260,26 @@ svg {
 .overlayOff {
     display: none;
 }
+
+.commentHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.commentHeader svg {
+    width: 16px;
+}
+
+.commentHeader button {
+    border: none;
+    font-size: 12px;
+    font-family: "DM Sans Bold", sans-serif;
+    padding: 2px 5px;
+    background-color: slategray;
+    color: white;
+}
+
+.commentHeader button:hover {
+    background-color: darkslategray;
+}

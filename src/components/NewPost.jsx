@@ -4,7 +4,7 @@ import fetchURL from "../fetchURL";
 import styles from "../styles/NewPost.module.css";
 
 const NewPost = () => {
-  const userLoggedIn = useOutletContext();
+  const {userLoggedIn} = useOutletContext();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");

@@ -18,8 +18,12 @@ const Post = () => {
   const [comments, setComments] = useState([]);
   const [isAddingComment, setIsAddingComment] = useState(false);
 
+  const [commentDeleteId, setCommentDeleteId] = useState(null);
+  const [isDelCommentPopsUp, setIsDelCommentPopsUp] = useState(false);
+  const [isDeletingComment, setIsDeletingComment] = useState(false);
+
   const { postId } = useParams();
-  const userLoggedIn = useOutletContext();
+  const { userLoggedIn, userName } = useOutletContext();
   const navigate = useNavigate();
 
   const handleComment = (e) => {
@@ -32,10 +36,9 @@ const Post = () => {
     if (commentText.length > 0) {
       const token = window.localStorage.getItem("token");
 
-      if (!token) {        
+      if (!token) {
         navigate("/log-in");
         navigate(0);
-        
       } else {
         setIsAddingComment(true);
         fetch(fetchURL + "/posts/" + postId + "/comments", {
@@ -62,10 +65,9 @@ const Post = () => {
             setCommentText("");
           })
           .catch((err) => {
-            if (err.message === "Unverified") {             
+            if (err.message === "Unverified") {
               navigate("/log-in");
               navigate(0);
-              
             } else {
               setCommentError(err.message);
               setCommentText("");
@@ -73,6 +75,53 @@ const Post = () => {
             setIsAddingComment(false);
           });
       }
+    }
+  };
+
+  const handleDeleteCommentPopOn = (deleteId) => {
+    setCommentDeleteId(deleteId);
+    setIsDelCommentPopsUp(true);
+  };
+
+  const handleDeleteCommentPopOff = () => {
+    setCommentDeleteId(null);
+    setIsDelCommentPopsUp(false);
+  };
+
+  const handleDeleteComment = () => {
+    setError(null);
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/log-in");
+      navigate(0);
+    } else {
+      setIsDeletingComment(true);
+      fetch(fetchURL + "/posts/" + postId + "/comments/" + commentDeleteId, {
+        mode: "cors",
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else if (response.status === 401) throw new Error("Unverified");
+          else throw new Error("Unable to add comment. Server Error");
+        })
+        .then((data) => {
+          navigate(0);
+        })
+        .catch((err) => {
+          if (err.message === "Unverified") {
+            navigate("/log-in");
+            navigate(0);
+          } else {
+            setError(err.message);
+          }
+          setIsDeletingComment(false);
+          setIsDelCommentPopsUp(false);
+        });
     }
   };
 
@@ -123,9 +172,27 @@ const Post = () => {
           {comments.map((comment) => {
             return (
               <li key={comment.id} className={styles.comment}>
-                <p className={styles.writer}>
-                  {comment.writerUsername} <span>commented on {format(comment.dateWritten, "Pp")}:</span>
-                </p>
+                <div className={styles.commentHeader}>
+                  <p className={styles.writer}>
+                    {comment.writerUsername}{" "}
+                    <span>
+                      commented on {format(comment.dateWritten, "Pp")}:
+                    </span>
+                  </p>
+                  {userName === comment.writerUsername && (
+                    <button
+                      onClick={() => handleDeleteCommentPopOn(comment.id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>delete</title>
+                        <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
                 <hr></hr>
                 <p className={styles.commentText}>{comment.content}</p>
               </li>
@@ -152,8 +219,34 @@ const Post = () => {
               </form>
             </li>
           )}
-          {commentError && <li className={styles.commentError}><p>{commentError}</p></li>}
+          {commentError && (
+            <li className={styles.commentError}>
+              <p>{commentError}</p>
+            </li>
+          )}
         </ul>
+        <div
+          className={isDelCommentPopsUp ? styles.overlayOn : styles.overlayOff}
+        >
+          <div
+            className={isDelCommentPopsUp ? styles.deleteOn : styles.deleteOff}
+          >
+            {isDeletingComment && (
+              <div>
+                <p>Deleting comment...</p>
+              </div>
+            )}
+            {!isDeletingComment && (
+              <div>
+                <p>Delete this comment?</p>
+                <div className={styles.yesno}>
+                  <button onClick={handleDeleteComment}>YES</button>
+                  <button onClick={handleDeleteCommentPopOff}>NO</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }

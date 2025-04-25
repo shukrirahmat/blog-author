@@ -20,9 +20,13 @@ const ProtectedPost = () => {
   const [isPublishing, setIsPublishing] = useState(false);
   const [isDelPopsUp, setIsDelPopsUp] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  
+  const [commentDeleteId, setCommentDeleteId] = useState(null);
+  const [isDelCommentPopsUp, setIsDelCommentPopsUp] = useState(false);
+  const [isDeletingComment, setIsDeletingComment] = useState(false);
 
   const { postId } = useParams();
-  const userLoggedIn = useOutletContext();
+  const { userLoggedIn, userName } = useOutletContext();
   const navigate = useNavigate();
 
   const handlePublish = (publishStatus) => {
@@ -160,6 +164,53 @@ const ProtectedPost = () => {
     }
   };
 
+  const handleDeleteCommentPopOn = (deleteId) => {
+    setCommentDeleteId(deleteId);
+    setIsDelCommentPopsUp(true);
+  }
+
+  const handleDeleteCommentPopOff = () => {
+    setCommentDeleteId(null);
+    setIsDelCommentPopsUp(false);
+  }
+
+  const handleDeleteComment = () => {
+    setError(null);
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/log-in");
+      navigate(0);
+    } else {
+      setIsDeletingComment(true);
+      fetch(fetchURL + "/posts/" + postId + "/comments/" + commentDeleteId, {
+        mode: "cors",
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else if (response.status === 401) throw new Error("Unverified");
+          else throw new Error("Unable to add comment. Server Error");
+        })
+        .then((data) => {
+          navigate(0);
+        })
+        .catch((err) => {
+          if (err.message === "Unverified") {
+            navigate("/log-in");
+            navigate(0);
+          } else {
+            setError(err.message);
+          }
+          setIsDeletingComment(false);
+          setIsDelCommentPopsUp(false);
+        });
+    }
+  };
+
   useEffect(() => {
     setIsLoading(true);
     setError(null);
@@ -254,10 +305,25 @@ const ProtectedPost = () => {
           {comments.map((comment) => {
             return (
               <li key={comment.id} className={styles.comment}>
-                <p className={styles.writer}>
-                  {comment.writerUsername}{" "}
-                  <span>commented on {format(comment.dateWritten, "Pp")}:</span>
-                </p>
+                <div className={styles.commentHeader}>
+                  <p className={styles.writer}>
+                    {comment.writerUsername}{" "}
+                    <span>
+                      commented on {format(comment.dateWritten, "Pp")}:
+                    </span>
+                  </p>
+                  {userName === comment.writerUsername && (
+                    <button onClick={ () => handleDeleteCommentPopOn(comment.id)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>delete</title>
+                        <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
                 <hr></hr>
                 <p className={styles.commentText}>{comment.content}</p>
               </li>
@@ -294,7 +360,7 @@ const ProtectedPost = () => {
           <div className={isDelPopsUp ? styles.deleteOn : styles.deleteOff}>
             {isDeleting && (
               <div>
-                <p>Deleting...</p>
+                <p>Deleting post...</p>
               </div>
             )}
             {!isDeleting && (
@@ -303,6 +369,24 @@ const ProtectedPost = () => {
                 <div className={styles.yesno}>
                   <button onClick={handleDeletePost}>YES</button>
                   <button onClick={handleDeletePopOff}>NO</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={isDelCommentPopsUp ? styles.overlayOn : styles.overlayOff}>
+          <div className={isDelCommentPopsUp ? styles.deleteOn : styles.deleteOff}>
+            {isDeletingComment && (
+              <div>
+                <p>Deleting comment...</p>
+              </div>
+            )}
+            {!isDeletingComment && (
+              <div>
+                <p>Delete this comment?</p>
+                <div className={styles.yesno}>
+                  <button onClick={handleDeleteComment}>YES</button>
+                  <button onClick={handleDeleteCommentPopOff}>NO</button>
                 </div>
               </div>
             )}

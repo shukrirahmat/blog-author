@@ -4,7 +4,7 @@ import fetchURL from "../fetchURL";
 import styles from "../styles/LogIn.module.css";
 
 const LogIn = () => {
-  const userLoggedIn = useOutletContext();
+  const {userLoggedIn} = useOutletContext();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");

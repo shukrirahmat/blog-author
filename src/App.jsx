@@ -67,7 +67,7 @@ function App() {
           )}
         </div>
       </nav>
-      <Outlet context={userLoggedIn} />
+      <Outlet context={{userLoggedIn, userName}} />
       <div className={styles.footer}>
         <p>© shkrrhmt 2025</p>
       </div>
