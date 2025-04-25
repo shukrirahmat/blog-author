@@ -18,6 +18,8 @@ const ProtectedPost = () => {
   const [comments, setComments] = useState([]);
   const [isAddingComment, setIsAddingComment] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
+  const [isDelPopsUp, setIsDelPopsUp] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const { postId } = useParams();
   const userLoggedIn = useOutletContext();
@@ -31,7 +33,6 @@ const ProtectedPost = () => {
     if (!token) {
       navigate("/log-in");
       navigate(0);
-      
     } else {
       setIsPublishing(true);
       fetch(fetchURL + "/posts/" + postId + "/publish/" + boolValue, {
@@ -54,7 +55,6 @@ const ProtectedPost = () => {
           if (err.message === "Unverified") {
             navigate("/log-in");
             navigate(0);
-            
           } else {
             setError(err.message);
           }
@@ -76,7 +76,6 @@ const ProtectedPost = () => {
       if (!token) {
         navigate("/log-in");
         navigate(0);
-        
       } else {
         setIsAddingComment(true);
         fetch(fetchURL + "/posts/" + postId + "/comments", {
@@ -106,7 +105,6 @@ const ProtectedPost = () => {
             if (err.message === "Unverified") {
               navigate("/log-in");
               navigate(0);
-              
             } else {
               setCommentError(err.message);
               setCommentText("");
@@ -114,6 +112,51 @@ const ProtectedPost = () => {
             setIsAddingComment(false);
           });
       }
+    }
+  };
+
+  const handleDeletePopUp = () => {
+    setIsDelPopsUp(true);
+  };
+
+  const handleDeletePopOff = () => {
+    setIsDelPopsUp(false);
+  };
+
+  const handleDeletePost = () => {
+    setError(null);
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/log-in");
+      navigate(0);
+    } else {
+      setIsDeleting(true);
+      fetch(fetchURL + "/posts/" + postId, {
+        mode: "cors",
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else if (response.status === 401) throw new Error("Unverified");
+          else throw new Error("Unable to add comment. Server Error");
+        })
+        .then((data) => {
+          navigate("/myposts");
+        })
+        .catch((err) => {
+          if (err.message === "Unverified") {
+            navigate("/log-in");
+            navigate(0);
+          } else {
+            setError(err.message);
+          }
+          setIsDeleting(false);
+          setIsDelPopsUp(false);
+        });
     }
   };
 
@@ -126,7 +169,6 @@ const ProtectedPost = () => {
     if (!token) {
       navigate("/log-in");
       navigate(0);
-      
     } else {
       fetch(fetchURL + "/posts/userPosts/" + postId, {
         mode: "cors",
@@ -180,37 +222,31 @@ const ProtectedPost = () => {
           <hr></hr>
           <p className={styles.content}>{post.content}</p>
           <div className={styles.actionBtnContainer}>
-          {!isPublishing && post.published && (
-            <button
-              onClick={() => {
-                handlePublish(false);
-              }}
-            >
-              UNPUBLISH
-            </button>
-          )}
-          {!isPublishing && !post.published && (
-            <button
-              onClick={() => {
-                handlePublish(true);
-              }}
-            >
-              PUBLISH
-            </button>
-          )}
-          {isPublishing && post.published && (
-            <button disabled>
-              UNPUBLISHING...
-            </button>
-          )}
-          {isPublishing && !post.published && (
-            <button disabled>
-              PUBLISHING...
-            </button>
-          )}
-          <button>
-            DELETE
-          </button>
+            {!isPublishing && post.published && (
+              <button
+                onClick={() => {
+                  handlePublish(false);
+                }}
+              >
+                UNPUBLISH
+              </button>
+            )}
+            {!isPublishing && !post.published && (
+              <button
+                onClick={() => {
+                  handlePublish(true);
+                }}
+              >
+                PUBLISH
+              </button>
+            )}
+            {isPublishing && post.published && (
+              <button disabled>UNPUBLISHING...</button>
+            )}
+            {isPublishing && !post.published && (
+              <button disabled>PUBLISHING...</button>
+            )}
+            <button onClick={handleDeletePopUp}>DELETE</button>
           </div>
         </div>
 
@@ -254,9 +290,24 @@ const ProtectedPost = () => {
             </li>
           )}
         </ul>
-      <div className={styles.deleteConfirmation}>
-          <p>Delete this Post?</p>
-      </div>
+        <div className={isDelPopsUp ? styles.overlayOn : styles.overlayOff}>
+          <div className={isDelPopsUp ? styles.deleteOn : styles.deleteOff}>
+            {isDeleting && (
+              <div>
+                <p>Deleting...</p>
+              </div>
+            )}
+            {!isDeleting && (
+              <div>
+                <p>Delete this post?</p>
+                <div className={styles.yesno}>
+                  <button onClick={handleDeletePost}>YES</button>
+                  <button onClick={handleDeletePopOff}>NO</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
