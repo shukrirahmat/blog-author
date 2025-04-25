@@ -25,7 +25,7 @@ const ProtectedPost = () => {
 
   const handlePublish = (publishStatus) => {
     setError(null);
-    const boolValue = publishStatus? "1" : "0";
+    const boolValue = publishStatus ? "1" : "0";
     const token = window.localStorage.getItem("token");
 
     if (!token) {
@@ -160,6 +160,12 @@ const ProtectedPost = () => {
             {post.title}{" "}
             {post.published ? (
               <span className={styles.publishedTag}>
+                <div className={styles.tick}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>check-bold</title>
+                    <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+                  </svg>
+                </div>
                 published on {format(post.datePosted, "Pp")}
               </span>
             ) : (
@@ -169,12 +175,22 @@ const ProtectedPost = () => {
           <hr></hr>
           <p className={styles.content}>{post.content}</p>
           {!isPublishing && post.published && (
-            <button className={styles.publishBtn} onClick={() => {handlePublish(false)}}>
+            <button
+              className={styles.publishBtn}
+              onClick={() => {
+                handlePublish(false);
+              }}
+            >
               UNPUBLISH
             </button>
           )}
           {!isPublishing && !post.published && (
-            <button className={styles.publishBtn} onClick={() => {handlePublish(true)}}>
+            <button
+              className={styles.publishBtn}
+              onClick={() => {
+                handlePublish(true);
+              }}
+            >
               PUBLISH
             </button>
           )}
@@ -188,7 +204,6 @@ const ProtectedPost = () => {
               PUBLISHING...
             </button>
           )}
-
         </div>
 
         <ul className={styles.comments}>

@@ -132,16 +132,22 @@
 }
 
 .publishedTag {
-    background-color: green;
-    color: white;
+    background-color: inherit;
+    color: black;
+    border: solid 1px black;
     border-radius: 2px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 2px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
 }
 
 .unpublishedTag {
-    background-color: darkgrey;
-    color: white;
+    background-color: inherit;
+    color: grey;
+    border: solid 1px grey;
     border-radius: 2px;
     font-family: "DM Sans Bold", sans-serif;
     padding: 2px 5px;
@@ -156,6 +162,20 @@
     padding: 5px 15px;
     background-color: slategray;
     color: white;
+}
+
+.tick {
+    background-color: greenyellow;
+    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    filter: invert(1);
 }
 
 .publishBtn:hover {
