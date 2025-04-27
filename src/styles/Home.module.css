@@ -70,6 +70,7 @@
 }
 
 .content {
+    padding-top: 1.5em;
     overflow-y: hidden;
     text-overflow: ellipsis;
 }
